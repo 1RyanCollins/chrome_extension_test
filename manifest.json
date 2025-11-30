@@ -1,20 +1,31 @@
 {
   "manifest_version": 3,
-  "name": "SERP vs ChatGPT Links",
+  "name": "ChatGPT Search Data Extractor",
   "version": "1.0",
-  "description": "Compare Google SERP links vs ChatGPT response links",
-  "permissions": ["storage"],
-  "action": {
-    "default_popup": "popup.html"
+  "description": "Extracts search_model_queries and search_result_urls from ChatGPT streaming responses.",
+
+  "permissions": ["scripting", "activeTab"],
+
+  "background": {
+    "service_worker": "background.js"
   },
+
   "content_scripts": [
     {
-      "matches": ["https://www.google.com/search*"],
-      "js": ["google.js"]
-    },
+      "matches": ["https://chatgpt.com/*", "https://chat.openai.com/*"],
+      "js": ["content.js"]
+    }
+  ],
+
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Search Data Extractor"
+  },
+
+  "web_accessible_resources": [
     {
-      "matches": ["<all_urls>"],
-      "js": ["chatgpt.js"]
+      "resources": ["intercept.js"],
+      "matches": ["https://chatgpt.com/*", "https://chat.openai.com/*"]
     }
   ]
 }
