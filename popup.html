@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Link Comparison</title>
+    <style>
+        body { font-family: Arial; width: 400px; padding: 10px; }
+        h3 { margin-bottom: 5px; }
+        .link-list { max-height: 200px; overflow-y: auto; margin-bottom: 15px; }
+        .link-list a { display: block; font-size: 12px; margin-bottom: 2px; text-decoration: none; color: blue; }
+    </style>
+</head>
+<body>
+    <h3>Links in both</h3>
+    <div id="both" class="link-list"></div>
+
+    <h3>Only in Google</h3>
+    <div id="googleOnly" class="link-list"></div>
+
+    <h3>Only in ChatGPT</h3>
+    <div id="chatOnly" class="link-list"></div>
+
+    <script src="popup.js"></script>
+</body>
+</html>
