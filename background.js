@@ -1,26 +1,26 @@
 let searchQueries = [];
 let searchUrls = [];
 
-chrome.runtime.onMessage.addListener((msg, sender) => {
+// Receive messages from content.js
+chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
+  // Store queries
   if (msg.event === "searchQueries") {
     searchQueries = msg.data;
   }
 
+  // Store URLs
   if (msg.event === "searchUrls") {
     searchUrls = msg.data;
   }
 
-  // Allow popup.js to request the data
+  // Popup requests data
   if (msg.event === "getData") {
-    chrome.runtime.sendMessage({
+    sendResponse({
       event: "dataResponse",
       searchQueries,
       searchUrls
     });
   }
+
+  return true; // allows async sendResponse
 });
-
-    }
-}
-
-window.EventSource = HookedEventSource;
